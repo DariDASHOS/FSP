@@ -150,15 +150,100 @@ int main(){
 				break;
 			//Действие: среднее значение сумм
 			case 3:
-                 cout << "\nДанный раздел находится в разработке." << endl;
-                 cout << endl;
-                 break;
+				{
+				//количество сумм
+				int n;
+				cout << "Введите количество денежных сумм: " << endl;
+				cin >> n;
+				//создание массива
+				money *summi = new money[n];
+				for (int w = 0; w < n; w++){
+					cout << endl << w+1 << " сумма.";
+					vvod(summi[w]);
+				}
+				//вывод значений
+				cout << "\nВведённые суммы:" << endl; 
+				for (int w = 0; w < n; w++){
+					cout << w+1 << ")";
+					vivod(summi[w]);
+					perevodmin(summi[w]);
+				}
+				cout << endl;  
+				//вычисления
+				int sum = 0, srpens;
+				for (int i = 0; i < n; i++) sum += summi[i].pens;
+				srpens = sum/n;
+				m1.funt = 0;
+				m1.sch = 0;
+				m1.pens = srpens;
+				perevodmax(m1);
+				cout << "\nСреднее значение введённых сумм: " << endl;
+				vivod(m1);
+//				cout << "\nРезультат:" << endl; for (int w = 0; w < n; w++) vivod(summi[w]); cout << endl;
+				cout << endl;
+				break;
+			}
 				
 			//Действие: пары сумм наиболее близкие и наиболее далекие по значению
 			case 4:
-				 cout << "\nДанный раздел находится в разработке." << endl;
-                 cout << endl;
-                 break;
+				{
+				//количество сумм
+				int m;
+				cout << "Введите количество денежных сумм: " << endl;
+				cin >> m;
+				//создание массива
+				money *summ = new money[m];
+				for (int w = 0; w < m; w++){
+					cout << endl << w+1 << " сумма.";
+					vvod(summ[w]);
+				}
+				//вывод значений
+				cout << "\nВведённые суммы, конвертированные в максимальные единицы:" << endl; 
+				for (int w = 0; w < m; w++){
+					perevodmax(summ[w]);
+					cout << w+1 << ")";
+					vivod(summ[w]);
+					perevodmin(summ[w]);
+				}
+				cout << endl;  
+				
+				//сортировка
+				for (int l = 0; l < m-1; ++l){
+					for (int k = 0; k < m-l-1; ++k){
+						if (summ[k].pens > summ[k+1].pens){
+							money temp = summ[k];
+							summ[k] = summ[k+1];
+							summ[k+1] = temp;
+						}
+					}
+				}
+				
+				int minrazn = summ[m-1].pens;
+				for (int i = 0; i < m-1; i++){
+					if (summ[i+1].pens - summ[i].pens < minrazn) minrazn = summ[i+1].pens - summ[i].pens;
+				}
+				
+				cout << "\nСамые близкие по значению суммы: " << endl;
+				for (int j = 0; j < m-1; j++){
+					if (summ[j+1].pens - summ[j].pens == minrazn){
+						perevodmax(summ[j]);
+						perevodmax(summ[j+1]);
+						vivod(summ[j]);
+						vivod(summ[j+1]);
+					}
+				}
+				
+				
+				//вывод
+				cout << "\nСамые далёкие: " << endl;
+				cout << endl;
+				perevodmax(summ[0]);
+				perevodmax(summ[m-1]);
+				vivod(summ[0]);
+				vivod(summ[m-1]);
+				cout << endl;
+				break;
+			}
 			//Выбрал что-то другое
 			default: cout << "\nНеизвестная операция." << endl;
 				cout << endl;
