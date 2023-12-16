@@ -14,14 +14,59 @@ struct money m2;
 //Функция ввода суммы
 void vvod(money & p) {
 	//Фунты
-	cout << "\nВведите количество фунтов: " << endl;
-	cin >> p.funt;
+	do{
+		cout << "\nВведите количество фунтов: " << endl;
+		cin >> p.funt;
+		if (cin.fail()) {
+			cout << "\nНеккоректные данные. Введите целое число." << endl;
+			cout << endl;
+			cin.clear();
+			cin.ignore();
+		}
+		else {
+			if (p.funt < 0) {
+				cout << "\nНеккоректные данные. Введите целое неотрицательное число." << endl;
+				cout << endl;
+			}
+		}
+	}
+	while (p.funt < 0 || cin.fail());
 	//Шиллинги
-	cout << "\nВведите количество шиллингов: " << endl;
-	cin >> p.sch;
+	do{
+		cout << "\nВведите количество шиллингов: " << endl;
+		cin >> p.sch;
+		if (cin.fail()) {
+			cout << "\nНеккоректные данные. Введите целое число." << endl;
+			cout << endl;
+			cin.clear();
+			cin.ignore();
+		}
+		else {
+			if (p.sch < 0) {
+				cout << "\nНеккоректные данные. Введите целое неотрицательное число." << endl;
+				cout << endl;
+			}
+		}
+	}
+	while (p.sch < 0 || cin.fail());
 	//Пенсы
-	cout << "\nВведите количество пенсов: " << endl;
-	cin >> p.pens;
+	do{
+		cout << "\nВведите количество пенсов: " << endl;
+		cin >> p.pens;
+		if (cin.fail()) {
+			cout << "\nНеккоректные данные. Введите целое число." << endl;
+			cout << endl;
+			cin.clear();
+			cin.ignore();
+		}
+		else {
+			if (p.pens < 0) {
+				cout << "\nНеккоректные данные. Введите целое неотрицательное число." << endl;
+				cout << endl;
+			}
+		}
+	}
+	while (p.pens < 0 || cin.fail());
 }
 
 //Функция вывода суммы
@@ -85,8 +130,22 @@ int main(){
 			case 1:
 				int a;
 				//Выбор формата
-				cout << "\nВыберите формат: 1 - в максимальных единицах, 2 - в пенсах." << endl;
-				cin >> a;
+				do {
+					cout << "\nВыберите формат: 1 - в максимальных единицах, 2 - в пенсах." << endl;
+					cin >> a;
+					if (cin.fail()) {
+						cout << "\nНеизвестная операция." << endl;
+						cout << endl;
+						cin.clear();
+						cin.ignore();
+					}
+					else {
+						if (a != 1 & a != 2) {
+						cout << "\nНеизвестная операция." << endl;
+						cout << endl;
+						}
+					}
+				} while((a != 1 & a != 2) || cin.fail());
 				//Перевод в заданном формате
 				switch(a){
 					//Макс. единица
@@ -122,8 +181,22 @@ int main(){
 				vivod(m1);
 				cout << "\nВторая сумма:" << endl;
 				vivod(m2);
-				cout << "\nВыберите действие: 1 - сложить, 2 - вычесть" << endl;
-				cin >> b;
+				do {
+					cout << "\nВыберите действие: 1 - сложить, 2 - вычесть" << endl;
+					cin >> b;
+					if (cin.fail()) {
+							cout << "\nНеизвестная операция." << endl;
+							cout << endl;
+							cin.clear();
+							cin.ignore();
+						}
+						else {
+							if (b != 1 & b != 2) {
+							cout << "\nНеизвестная операция." << endl;
+							cout << endl;
+							}
+						}
+				} while((b != 1 & b != 2) || cin.fail());
 				//Если сложение
 				if (b == 1) {
 					summa(m1, m2);
@@ -153,8 +226,23 @@ int main(){
 				{
 				//количество сумм
 				int n;
-				cout << "Введите количество денежных сумм: " << endl;
-				cin >> n;
+				//ввод паеременной
+				do{
+					cout << "Введите количество денежных сумм: " << endl;
+					cin >> n;
+					if (cin.fail()) {
+						cout << "\nНеккоректные данные. Введите целое число" << endl;
+						cout << endl;
+						cin.clear();
+						cin.ignore();
+					}
+					else {
+						if (n <= 0) {
+						cout << "\nНеккоректные данные. Введите целое число больше нуля" << endl;
+						cout << endl;
+						}
+					}
+				}while((n <= 0) || cin.fail());
 				//создание массива
 				money *summi = new money[n];
 				for (int w = 0; w < n; w++){
@@ -189,8 +277,23 @@ int main(){
 				{
 				//количество сумм
 				int m;
-				cout << "Введите количество денежных сумм: " << endl;
-				cin >> m;
+				//ввод паеременной
+				do{
+					cout << "Введите количество денежных сумм: " << endl;
+					cin >> m;
+					if (cin.fail()) {
+						cout << "\nНеккоректные данные. Введите целое число" << endl;
+						cout << endl;
+						cin.clear();
+						cin.ignore();
+					}
+					else {
+						if (m <= 0) {
+						cout << "\nНеккоректные данные. Введите целое число больше нуля" << endl;
+						cout << endl;
+						}
+					}
+				}while((m <= 0) || cin.fail());
 				//создание массива
 				money *summ = new money[m];
 				for (int w = 0; w < m; w++){
